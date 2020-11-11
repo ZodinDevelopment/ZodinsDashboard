@@ -22,4 +22,5 @@ class Config(object):
     UPLOAD_FOLDER = os.path.join(basedir, 'uploads')
     IMAGE_EXTENSIONS = ['jpg', 'png', 'gif']
     VIDEO_EXTENSIONS = ['mp4', 'mov', 'webm']
-    
+    with open(os.path.join(basedir, 'about.txt'), 'r') as f:
+        ABOUT_TEXT = f.read()    

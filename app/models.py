@@ -38,7 +38,7 @@ class User(UserMixin, db.Model):
     messages_received = db.relationship(
         'Message',
         foreign_keys='Message.recipient_id',
-        backref='recipipent', lazy='dynamic'
+        backref='recipient', lazy='dynamic'
     )
     last_message_read_time = db.Column(db.DateTime)
     notifications = db.relationship('Notification', backref='user', lazy='dynamic')
@@ -111,6 +111,7 @@ def load_user(id):
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     def __repr__(self):
